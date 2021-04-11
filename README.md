@@ -46,6 +46,7 @@ It should build the 2 lambda for Linux/x86_64. To deploy them and create
 all the resources, run:
 
 ```bash
+cd terraform
 terraform init
 terraform apply
 ```
