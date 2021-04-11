@@ -5,6 +5,21 @@ in a DynamoDB table and deploy with Terraform.
 
 ## Overview
 
+The schema below show the architecture of the project:
+
+![overview](./img/arch.png)
+
+It contains the following key components:
+
+- a dynamodb database store the currently connected websockets as well as the
+  associated channels. For now there is only one test channel
+- the `Rx` section on the top is made of a lambda and an API gateway that
+  are maintaining websocket connections with users. The lamba tracks
+  connections in dynamodb
+- the `HTTP` section on the bottom is mane of a lambda and an API gateway that
+  can be used to discover connections to a channel and dispatch a message to
+  all the users.
+
 ## Before you start
 
 There are a few issues, you need to be aware of:
@@ -54,6 +69,11 @@ The Websocket will echo your message. Once you've established the websocket,
 posting into the HTTP route would send a message to the websocket too:
 
 ```bash
-curl https://sehslrmh94.execute-api.us-east-1.amazonaws.com/staging/ \
+curl https://yyyyyyyy.execute-api.us-east-1.amazonaws.com/staging/ \
   -XPOST -d'message' 
 ```
+
+## To continue
+
+Do not hesitate to open an issue or add a PR to the repository. You can
+freely reuse this project, thank to the [MIT LICENCE](./LICENSE).
